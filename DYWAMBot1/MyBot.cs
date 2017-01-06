@@ -37,9 +37,10 @@ namespace DYWAMBot
             commandList = new string[]
             {
                 "!hello ",
-                "!helloAlt",
+                "!helloAlt ",
                 "!meme ",
                 "!sharpshooter ",
+                "!roll ",
                 "!diceRoll ",
                 "!vote "
             };
@@ -92,6 +93,7 @@ namespace DYWAMBot
             registerHelloCommand();
             registerHelloCommand2();
             registerJhinUlt();
+            registerDieRoll();
             registerDiceRoll();
             registerVote();
 
@@ -174,6 +176,20 @@ namespace DYWAMBot
                 await e.Channel.SendTTSMessage("Gin alt! Get down! @ pause. @ pause. @ pause. @.... " + rand.Next(1, 5) + " shots hit!");
             });
            
+        }
+
+        /**
+         * Creates !roll command. Requires one call to prompt a die toss.
+         */
+        private void registerDieRoll()
+        {
+            commands.CreateCommand("roll")
+            .Description("Requires one call to prompt a die toss.")
+            .Do(async (e) =>
+            {
+               string roller = e.User.Name;
+                await e.Channel.SendMessage(roller + " rolled a " + rand.Next(1, 7) + ". ");
+            });
         }
 
         /**
