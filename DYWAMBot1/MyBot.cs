@@ -19,11 +19,13 @@ namespace DYWAMBot
         string[] randomGreetings;
         string[] randomGreetings2;
         string[] commandList;
+
+        // ArrayList<chatter> bettingList = new ArrayList<chatter>();
+
         Boolean roll1 = false;
         Boolean roll2 = false;
         string roller1 = "";
         string roller2 = "";
-
 
         /**
          * CONSTRUCTOR
@@ -47,7 +49,12 @@ namespace DYWAMBot
 
             memes = new string[]
             {
-                "images/meme1.jpg"
+                "images/meme1.jpg",
+                "images/meme2.jpg",
+                "images/meme3.jpg",
+                "images/meme4.jpg",
+                "images/meme5.jpg",
+                "images/meme6.jpg"
             };
 
             randomGreetings = new string[]
@@ -218,6 +225,21 @@ namespace DYWAMBot
                 }
             });
         }
+
+        /**
+         * Creates a !ranked command. Creates a "chatter" object which enters the user into a ranked queue. Ranked queue allows for wagering and tally count. 
+         
+        private void registerRanked()
+        {
+            commands.CreateCommand("ranked")
+            .Description("allows a user to enter the ranked queue")
+            .Do(async (e) =>
+            {
+                chatter p1 = new chatter(e.User.Name);
+            });
+        }
+        */
+
 
         private void registerVote()
         {
