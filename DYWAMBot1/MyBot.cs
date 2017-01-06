@@ -19,6 +19,7 @@ namespace DYWAMBot
         string[] randomGreetings;
         string[] randomGreetings2;
         string[] commandList;
+        ArrayList betters = new ArrayList();
 
         // ArrayList<chatter> bettingList = new ArrayList<chatter>();
 
@@ -228,17 +229,26 @@ namespace DYWAMBot
 
         /**
          * Creates a !ranked command. Creates a "chatter" object which enters the user into a ranked queue. Ranked queue allows for wagering and tally count. 
-         
+         */
         private void registerRanked()
         {
             commands.CreateCommand("ranked")
             .Description("allows a user to enter the ranked queue")
             .Do(async (e) =>
             {
+                if(betters.Contains(e.User.Name))
+                {
+                    await e.Channel.SendMessage(e.User.Name + " has already been added to the betting list.");
+                    return;
+                }
+                
+                betters.Add(e.User.Name);
                 chatter p1 = new chatter(e.User.Name);
+                await e.Channel.SendMessage(e.User.Name + " has been added to the betting list.");
+                
             });
         }
-        */
+      
 
 
         private void registerVote()
