@@ -173,7 +173,7 @@ namespace DYWAMBot
             .Description("Don't miss.")
             .Do(async (e) =>
             {
-                await e.Channel.SendTTSMessage("Gin alt! Get down! @ pause. @ pause. @ pause. @.... " + rand.Next(1, 5) + " shots hit!");
+                await e.Channel.SendTTSMessage("Gin alt! Get down! @. @. @. @.... " + rand.Next(1, 5) + " shots hit!");
             });
            
         }
