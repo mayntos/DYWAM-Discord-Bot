@@ -18,5 +18,15 @@ namespace DYWAMBot
             wins = 0;
             name = n;
         }
+
+        public string getName()
+        {
+            return name;
+        }
+
+        public void withdraw(int n)
+        {
+            wallet -= n;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Discord.Commands;
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,9 @@ namespace DYWAMBot
         string[] randomGreetings2;
         string[] commandList;
         ArrayList betters = new ArrayList();
+        ArrayList chatters1 = new ArrayList();
+
+        int bank = 0;
 
         // ArrayList<chatter> bettingList = new ArrayList<chatter>();
 
@@ -104,6 +108,8 @@ namespace DYWAMBot
             registerDieRoll();
             registerDiceRoll();
             registerVote();
+            registerRanked();
+            registerWager();
 
 
             discord.ExecuteAndWait(async () =>
@@ -244,11 +250,34 @@ namespace DYWAMBot
                 
                 betters.Add(e.User.Name);
                 chatter p1 = new chatter(e.User.Name);
+                chatters1.Add(p1);
                 await e.Channel.SendMessage(e.User.Name + " has been added to the betting list.");
                 
             });
         }
-      
+
+        /**
+         * Creates a !wager command. Allows user to bet currency from their wallet.
+         */
+         private void registerWager()
+        {
+            commands.CreateCommand("wager")
+            .Description("allows a user to enter a wager")
+            .Parameter("w", ParameterType.Required) //parameter takes the next available character or string of characters as a passable argument.
+            .Do(async (e) =>
+            {
+                    foreach(chatter x in chatters1)
+                    {
+                        if(e.User.Name.Equals(x.getName()))
+                        {
+                            x.withdraw(Convert.ToInt32(e.GetArg("w"))); //.GetArg() allows retrieval of method's stored argument. 
+                            await e.Channel.SendMessage(e.User.Name + " has wagered " + e.GetArg("w") + " shillings.");
+                        }
+                    }
+               
+            });
+        }
+        
 
 
         private void registerVote()
