@@ -114,7 +114,7 @@ namespace DYWAMBot
 
             discord.ExecuteAndWait(async () =>
             {
-                await discord.Connect("MjUwNzMzMjg0OTIzOTMyNjcz.CxZMPA.FPYnjWsiIPbyH3FhGZ50hZ32Kag", TokenType.Bot);
+                await discord.Connect("", TokenType.Bot);
             });
 
 
